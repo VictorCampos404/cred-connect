@@ -1,3 +1,4 @@
+import 'package:cred_connect/core/constants/constants.dart';
 import 'package:cred_connect/presentation/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -23,7 +24,7 @@ class _AppRootState extends State<AppRoot> {
         title: 'Cred Connect',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
           useMaterial3: true,
         ),
         routeInformationParser: Modular.routeInformationParser,

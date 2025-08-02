@@ -4,7 +4,7 @@ class Masks {
   Masks();
 
   static final phoneMask = MaskTextInputFormatter(
-    mask: '+55 (##) #####-####',
+    mask: '+ ### ### ### ###',
     filter: {"#": RegExp(r'[0-9]')},
     type: MaskAutoCompletionType.lazy,
   );

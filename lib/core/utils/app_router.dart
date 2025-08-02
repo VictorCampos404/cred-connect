@@ -14,11 +14,19 @@ class AppRouter {
     return Modular.to.pushNamed(Routes.welcomePage);
   }
 
-  static goToLoginPage() async {
+  static goToLoginPage({bool popAndPush = false}) async {
+    if (popAndPush) {
+      return Modular.to.popAndPushNamed(Routes.loginPage);
+    }
+
     return Modular.to.pushNamed(Routes.loginPage);
   }
 
-  static goToCreateAccountPage() async {
+  static goToCreateAccountPage({bool popAndPush = false}) async {
+    if (popAndPush) {
+      return Modular.to.popAndPushNamed(Routes.createAccountPage);
+    }
+
     return Modular.to.pushNamed(Routes.createAccountPage);
   }
 

@@ -6,4 +6,8 @@ class AppColors {
   static const Color text = Color(0xff001533);
   static const Color inputValue = Color(0xff666666);
   static const Color buttonBorder = Color(0xff999999);
+  static const Color required = Color(0xffFF647C);
+  static Color disable = Color(0xff999999).withValues(alpha: 0.5);
+  static Color inputFilled = Color(0xff999999).withValues(alpha: 0.05);
+  static Color inputBorder = Color(0xffE4E4E4).withValues(alpha: 0.6);
 }
