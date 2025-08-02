@@ -9,3 +9,6 @@ export 'get_user_data/get_user_data_usecase_imp.dart';
 
 export 'get_balance/get_balance_usecase.dart';
 export 'get_balance/get_balance_usecase_imp.dart';
+
+export 'get_customers/get_customers_usecase.dart';
+export 'get_customers/get_customers_usecase_imp.dart';

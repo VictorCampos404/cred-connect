@@ -8,6 +8,23 @@ class CreateAccountDatasourceImp implements CreateAccountDatasource {
 
   @override
   Future<void> call({required UserDto user}) async {
+    final response = await _localDatabaseService.getAll('users');
+
+    final allUsers = response
+        .map((element) => UserDto.fromMap(element))
+        .toList();
+
+    final matchUsers = allUsers.where((element) {
+      return element.phone == user.phone;
+    });
+
+    if (matchUsers.isNotEmpty) {
+      throw SystemException(
+        title: "Celular já em uso!",
+        message: "Esse celular já está em uso por outra conta",
+      );
+    }
+
     await _localDatabaseService.save("users", user.toMap());
   }
 }

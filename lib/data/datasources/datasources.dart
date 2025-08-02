@@ -9,3 +9,6 @@ export 'get_user_data/get_user_data_datasource_imp.dart';
 
 export 'get_balance/get_balance_datasource.dart';
 export 'get_balance/get_balance_datasource_imp.dart';
+
+export 'get_customers/get_customers_datasource.dart';
+export 'get_customers/get_customers_datasource_imp.dart';

@@ -1,7 +1,7 @@
 import 'package:cred_connect/core/enums/gender_type.dart';
 import 'package:collection/collection.dart';
 
-class CustumerDto {
+class CustomerDto {
   String? id;
   String? userId;
   String? firstName;
@@ -12,7 +12,7 @@ class CustumerDto {
   String? address;
   DateTime? createdAt;
 
-  CustumerDto({
+  CustomerDto({
     this.id,
     this.userId,
     this.firstName,
@@ -37,8 +37,8 @@ class CustumerDto {
     };
   }
 
-  factory CustumerDto.fromMap(Map<String, dynamic> map) {
-    return CustumerDto(
+  factory CustomerDto.fromMap(Map<String, dynamic> map) {
+    return CustomerDto(
       id: map['id'],
       userId: map['userId'],
       firstName: map['firstName'],
