@@ -10,6 +10,6 @@ class GetBalanceDatasourceImp implements GetBalanceDatasource {
 
   @override
   Future<double> call() async {
-    return 10000;
+    return 100000;
   }
 }

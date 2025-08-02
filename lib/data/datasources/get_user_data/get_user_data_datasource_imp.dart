@@ -13,7 +13,7 @@ class GetUserDataDatasourceImp implements GetUserDataDatasource {
   @override
   Future<UserDto> call() async {
     if (!_userSessionService.hasLogged) {
-      throw SystemException(title: "Erro!", message: "Acesso negado.");
+      throw SystemException(title: "Error!", message: "Access denied.");
     }
 
     final response = await _localDatabaseService.getAll('users');
@@ -27,7 +27,7 @@ class GetUserDataDatasourceImp implements GetUserDataDatasource {
     });
 
     if (matchUsers.isEmpty) {
-      throw SystemException(title: "Erro!", message: "Usuário não encontrado.");
+      throw SystemException(title: "Error!", message: "User not found.");
     }
 
     return matchUsers.first;

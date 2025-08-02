@@ -14,7 +14,7 @@ class GetCustomersDatasourceImp implements GetCustomersDatasource {
   @override
   Future<List<CustomerDto>> call() async {
     if (!_userSessionService.hasLogged) {
-      throw SystemException(title: "Erro!", message: "Acesso negado.");
+      throw SystemException(title: "Error!", message: "Access denied.");
     }
 
     final response = await _localDatabaseService.getAll('customers');

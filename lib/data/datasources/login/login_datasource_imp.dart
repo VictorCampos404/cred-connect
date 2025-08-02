@@ -21,8 +21,8 @@ class LoginDatasourceImp implements LoginDatasource {
 
     if (matchUsers.isEmpty) {
       throw SystemException(
-        title: "Erro ao fazer login!",
-        message: "Senha incorreta ou usuário não encontrado.",
+        title: "Error logging in!",
+        message: "Incorrect password or user not found.",
       );
     }
 
