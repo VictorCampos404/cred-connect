@@ -1,15 +1,25 @@
-import 'package:cred_connect/core/core.dart';
 import 'package:cred_connect/data/data.dart';
 import 'package:cred_connect/data/datasources/get_balance/get_balance_datasource.dart';
+import 'package:cred_connect/domain/usecases/get_loans/get_loans_usecase.dart';
 
 class GetBalanceDatasourceImp implements GetBalanceDatasource {
-  final LocalDatabaseService _localDatabaseService;
-  final UserSessionService _userSessionService;
+  final GetLoansUsecase _getLoansUsecase;
 
-  GetBalanceDatasourceImp(this._localDatabaseService, this._userSessionService);
+  GetBalanceDatasourceImp(this._getLoansUsecase);
 
   @override
   Future<double> call() async {
-    return 100000;
+    //Valor mockado definido pelo teste
+    final totalAvaliable = 100000.0;
+
+    final loans = await _getLoansUsecase();
+
+    double totalLoans = 0;
+
+    loans.map((element) {
+      totalLoans += element.amount ?? 0;
+    });
+
+    return totalAvaliable - totalLoans;
   }
 }

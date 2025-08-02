@@ -5,3 +5,4 @@ export 'get_balance_repository_imp.dart';
 export 'get_customers_repository_imp.dart';
 export 'create_customer_repository_imp.dart';
 export 'create_loan_repository_imp.dart';
+export 'get_loans_repository_imp.dart';

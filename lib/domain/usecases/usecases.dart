@@ -18,3 +18,6 @@ export 'create_customer/create_customer_usecase_imp.dart';
 
 export 'create_loan/create_loan_usecase.dart';
 export 'create_loan/create_loan_usecase_imp.dart';
+
+export 'get_loans/get_loans_usecase.dart';
+export 'get_loans/get_loans_usecase_imp.dart';
