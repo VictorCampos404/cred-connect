@@ -3,11 +3,19 @@ import 'package:cred_connect/data/data.dart';
 
 class GetUserDataDatasourceImp implements GetUserDataDatasource {
   final LocalDatabaseService _localDatabaseService;
+  final UserSessionService _userSessionService;
 
-  GetUserDataDatasourceImp(this._localDatabaseService);
+  GetUserDataDatasourceImp(
+    this._localDatabaseService,
+    this._userSessionService,
+  );
 
   @override
-  Future<UserDto> call({required String id}) async {
+  Future<UserDto> call() async {
+    if (!_userSessionService.hasLogged) {
+      throw SystemException(title: "Erro!", message: "Acesso negado.");
+    }
+
     final response = await _localDatabaseService.getAll('users');
 
     final allUsers = response
@@ -15,7 +23,7 @@ class GetUserDataDatasourceImp implements GetUserDataDatasource {
         .toList();
 
     final matchUsers = allUsers.where((element) {
-      return element.id == id;
+      return element.id == _userSessionService.userId;
     });
 
     if (matchUsers.isEmpty) {

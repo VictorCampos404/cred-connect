@@ -10,9 +10,9 @@ class GetUserDataRepositoryImp implements GetUserDataRepository {
   GetUserDataRepositoryImp(this._getUserDataDatasource);
 
   @override
-  Future<UserDto> call({required String id}) async {
+  Future<UserDto> call() async {
     try {
-      return await _getUserDataDatasource(id: id);
+      return await _getUserDataDatasource();
     } on SystemException catch (_) {
       rethrow;
     } catch (e) {
