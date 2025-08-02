@@ -9,12 +9,15 @@ class AppModule extends Module {
   void binds(Injector i) {
     //Usecases
     i.addLazySingleton<LoginUsecase>(LoginUsecaseImp.new);
+    i.addLazySingleton<CreateAccountUsecase>(CreateAccountUsecaseImp.new);
 
     //Repositories
     i.addLazySingleton<LoginRepository>(LoginRepositoryImp.new);
+    i.addLazySingleton<CreateAccountRepository>(CreateAccountRepositoryImp.new);
 
     //Datasources
     i.addLazySingleton<LoginDatasource>(LoginDatasourceImp.new);
+    i.addLazySingleton<CreateAccountDatasource>(CreateAccountDatasourceImp.new);
 
     //Controllers
     i.addLazySingleton(UserController.new);
