@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:cred_connect/core/core.dart';
 import 'package:cred_connect/data/data.dart';
 import 'package:cred_connect/domain/domain.dart';
+import 'package:flutter/foundation.dart';
 
 class CreateCustomerRepositoryImp implements CreateCustomerRepository {
   final CreateCustomerDatasource _createCustomerDatasource;
@@ -13,10 +12,11 @@ class CreateCustomerRepositoryImp implements CreateCustomerRepository {
   Future<void> call({required CustomerDto customer}) async {
     try {
       return await _createCustomerDatasource(customer: customer);
-    } on SystemException catch (_) {
+    } on SystemException catch (e) {
+      debugPrint(e.toString());
       rethrow;
     } catch (e) {
-      log(e.toString());
+      debugPrint(e.toString());
       throw SystemException.unknow();
     }
   }

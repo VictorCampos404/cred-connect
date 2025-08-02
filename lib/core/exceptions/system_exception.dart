@@ -17,4 +17,9 @@ class SystemException implements Exception {
   RequestResult toRequestResult() {
     return RequestResult(status: false, title: title, message: message);
   }
+
+  @override
+  String toString() {
+    return "SystemException(title: $title, message: $message)";
+  }
 }

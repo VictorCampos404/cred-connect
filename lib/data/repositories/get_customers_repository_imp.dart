@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:cred_connect/core/core.dart';
 import 'package:cred_connect/data/data.dart';
 import 'package:cred_connect/domain/domain.dart';
+import 'package:flutter/foundation.dart';
 
 class GetCustomersRepositoryImp implements GetCustomersRepository {
   final GetCustomersDatasource _getCustomersDatasource;
@@ -13,10 +12,11 @@ class GetCustomersRepositoryImp implements GetCustomersRepository {
   Future<List<CustomerDto>> call() async {
     try {
       return await _getCustomersDatasource();
-    } on SystemException catch (_) {
+    } on SystemException catch (e) {
+      debugPrint(e.toString());
       rethrow;
     } catch (e) {
-      log(e.toString());
+      debugPrint(e.toString());
       throw SystemException.unknow();
     }
   }

@@ -8,6 +8,6 @@ class AppSettings {
     WidgetsFlutterBinding.ensureInitialized();
     Modular.init(AppModule());
 
-    Modular.setInitialRoute(Routes.loginPage);
+    Modular.setInitialRoute(Routes.splashPage);
   }
 }

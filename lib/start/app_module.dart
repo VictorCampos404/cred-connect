@@ -53,7 +53,21 @@ class AppModule extends Module {
 
   @override
   void routes(RouteManager r) {
+    r.child(Routes.splashPage, child: (ctx) => const SplashPage());
+    r.child(Routes.welcomePage, child: (ctx) => const WelcomePage());
     r.child(Routes.loginPage, child: (ctx) => const LoginPage());
+    r.child(
+      Routes.createAccountPage,
+      child: (ctx) => const CreateAccountPage(),
+    );
+    r.child(Routes.homePage, child: (ctx) => const HomePage());
+    r.child(Routes.amountPage, child: (ctx) => const AmountPage());
+    r.child(Routes.createLoanPage, child: (ctx) => const CreateLoanPage());
+    r.child(
+      Routes.createCustomerPage,
+      child: (ctx) => const CreateCustomerPage(),
+    );
+    r.child(Routes.successPage, child: (ctx) => const SuccessPage());
 
     super.routes(r);
   }
