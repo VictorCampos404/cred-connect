@@ -11,22 +11,26 @@ class AppModule extends Module {
     i.addLazySingleton<LoginUsecase>(LoginUsecaseImp.new);
     i.addLazySingleton<CreateAccountUsecase>(CreateAccountUsecaseImp.new);
     i.addLazySingleton<GetUserDataUsecase>(GetUserDataUsecaseImp.new);
+    i.addLazySingleton<GetBalanceUsecase>(GetBalanceUsecaseImp.new);
 
     //Repositories
     i.addLazySingleton<LoginRepository>(LoginRepositoryImp.new);
     i.addLazySingleton<CreateAccountRepository>(CreateAccountRepositoryImp.new);
     i.addLazySingleton<GetUserDataRepository>(GetUserDataRepositoryImp.new);
+    i.addLazySingleton<GetBalanceRepository>(GetBalanceRepositoryImp.new);
 
     //Datasources
     i.addLazySingleton<LoginDatasource>(LoginDatasourceImp.new);
     i.addLazySingleton<CreateAccountDatasource>(CreateAccountDatasourceImp.new);
     i.addLazySingleton<GetUserDataDatasource>(GetUserDataDatasourceImp.new);
+    i.addLazySingleton<GetBalanceDatasource>(GetBalanceDatasourceImp.new);
 
     //Controllers
     i.addLazySingleton(UserController.new);
 
     //Services
     i.addLazySingleton(LocalDatabaseService.new);
+    i.addLazySingleton(UserSessionService.new);
 
     super.binds(i);
   }

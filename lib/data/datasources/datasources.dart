@@ -6,3 +6,6 @@ export 'create_account/create_account_datasource_imp.dart';
 
 export 'get_user_data/get_user_data_datasource.dart';
 export 'get_user_data/get_user_data_datasource_imp.dart';
+
+export 'get_balance/get_balance_datasource.dart';
+export 'get_balance/get_balance_datasource_imp.dart';
