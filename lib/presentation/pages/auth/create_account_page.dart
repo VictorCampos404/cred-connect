@@ -82,7 +82,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
           ),
         ),
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(Spaces.x2),
+          padding: const EdgeInsets.only(
+            top: Spaces.x2,
+            left: Spaces.x2,
+            right: Spaces.x2,
+            bottom: Spaces.x4,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

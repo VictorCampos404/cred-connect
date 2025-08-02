@@ -22,7 +22,7 @@ class Masks {
   );
 
   static final dateMask = MaskTextInputFormatter(
-    mask: '##/##/####',
+    mask: '####/##/##',
     filter: {"#": RegExp(r'[0-9]')},
     type: MaskAutoCompletionType.lazy,
   );

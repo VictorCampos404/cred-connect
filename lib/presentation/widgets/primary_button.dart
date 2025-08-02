@@ -3,10 +3,17 @@ import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String? text;
+  final Color? background;
   final bool? disable;
   final Function()? onTap;
 
-  const PrimaryButton({super.key, this.text, this.disable, this.onTap});
+  const PrimaryButton({
+    super.key,
+    this.text,
+    this.background,
+    this.disable,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +21,9 @@ class PrimaryButton extends StatelessWidget {
       absorbing: disable ?? false,
       child: Material(
         elevation: 2,
-        color: (disable ?? false) ? AppColors.disable : AppColors.primary,
+        color: (disable ?? false)
+            ? AppColors.disable
+            : background ?? AppColors.primary,
         borderRadius: BorderRadius.circular(5),
         child: InkWell(
           borderRadius: BorderRadius.circular(5),
