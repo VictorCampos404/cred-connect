@@ -15,3 +15,6 @@ export 'get_customers/get_customers_datasource_imp.dart';
 
 export 'create_customer/create_customer_datasource.dart';
 export 'create_customer/create_customer_datasource_imp.dart';
+
+export 'create_loan/create_loan_datasource.dart';
+export 'create_loan/create_loan_datasource_imp.dart';
