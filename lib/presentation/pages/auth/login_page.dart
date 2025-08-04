@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(Spaces.x3),
+              padding: const EdgeInsets.all(Spaces.x2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -99,7 +99,12 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PrimaryButton(text: "Log In", onTap: () {}),
+              PrimaryButton(
+                text: "Log In",
+                onTap: () {
+                  AppRouter.goToHomePage();
+                },
+              ),
               SizedBox(height: Spaces.x2),
               Text.rich(
                 TextSpan(

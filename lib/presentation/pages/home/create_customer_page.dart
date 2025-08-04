@@ -30,7 +30,7 @@ class _CreateCustomerPageState extends State<CreateCustomerPage> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(Spaces.x3),
+              padding: const EdgeInsets.all(Spaces.x2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 class MoneyFormat {
   static TextInputFormatter get mask => CurrencyTextInputFormatter(
-    symbol: "R\$",
+    symbol: "৳",
     locale: "pt_BR",
     decimalDigits: 2,
     enableNegative: false,
@@ -11,7 +11,7 @@ class MoneyFormat {
 
   static String value(double value) {
     final formated = CurrencyTextInputFormatter(
-      symbol: "R\$",
+      symbol: "৳",
       locale: "pt_BR",
       decimalDigits: 2,
     ).format(value.toStringAsFixed(2));
@@ -22,7 +22,7 @@ class MoneyFormat {
     if (value == null) return null;
 
     final formated = CurrencyTextInputFormatter(
-      symbol: "R\$",
+      symbol: "৳",
       locale: "pt_BR",
       decimalDigits: 2,
     ).format(value.toStringAsFixed(2));

@@ -32,7 +32,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(Spaces.x3),
+              padding: const EdgeInsets.all(Spaces.x2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -91,7 +91,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PrimaryButton(text: "Create your account", onTap: () {}),
+              PrimaryButton(
+                text: "Create your account",
+                onTap: () {
+                  AppRouter.goToLoginPage(popAndPush: true);
+                },
+              ),
               SizedBox(height: Spaces.x2),
               Text.rich(
                 TextSpan(
