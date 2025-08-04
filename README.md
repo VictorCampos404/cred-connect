@@ -9,14 +9,14 @@ oferece microempréstimos para clientes de baixa renda.
 
 ### **Instruções para build**:
 
-# 1. Clone o repositório
+1. Clone o repositório
 git clone https://github.com/VictorCampos404/cred-connect.git
 cd cred-connect
 
-# 2. Instale as dependências
+2. Instale as dependências
 flutter pub get
 
-# 3. Rode o projeto em um emulador ou dispositivo conectado
+3. Rode o projeto em um emulador ou dispositivo conectado
 flutter run
 
 ### **Como gerar o APK**:
