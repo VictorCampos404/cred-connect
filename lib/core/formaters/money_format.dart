@@ -31,7 +31,7 @@ class MoneyFormat {
 
   static double unFormat(String value) {
     try {
-      value = value.substring(3);
+      value = value.substring(1);
       value = value.replaceAll(".", "");
       value = value.replaceAll(",", ".");
 

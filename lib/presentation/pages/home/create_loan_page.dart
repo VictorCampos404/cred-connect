@@ -1,7 +1,12 @@
+import 'package:cred_connect/core/utils/pop_up.dart';
+import 'package:cred_connect/presentation/controllers/customer_controller.dart';
+import 'package:cred_connect/presentation/controllers/loan_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:cred_connect/core/core.dart';
 import 'package:cred_connect/core/utils/app_router.dart';
 import 'package:cred_connect/presentation/widgets/widgets.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:provider/provider.dart';
 
 class CreateLoanPage extends StatefulWidget {
   const CreateLoanPage({super.key});
@@ -12,109 +17,210 @@ class CreateLoanPage extends StatefulWidget {
 
 class _CreateLoanPageState extends State<CreateLoanPage> {
   @override
+  void initState() {
+    Future.microtask(() async {
+      final customerController = Modular.get<CustomerController>();
+
+      await customerController.getCustomers();
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: CustomAppBar(
-          leading: CustomIconButton(
-            icon: CustomIcons.arrow_left_s_line,
-            onTap: () {
-              AppRouter.pop();
-            },
-          ),
-        ),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(Spaces.x2),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: Spaces.x2),
-                    child: Text(
-                      "Amount and term",
-                      style: AppTextStyles.medium.copyWith(fontSize: 15),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CustomInput(
-                          title: "Loan Amount",
-                          hint: "R\$ 0,00",
-                        ),
-                      ),
-                      SizedBox(width: Spaces.x2),
-                      Expanded(
-                        child: CustomInput(
-                          title: "Term (months)",
-                          hint: "Select a term",
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: Spaces.x2),
-                    child: CustomInput(
-                      title: "Select customer",
-                      hint: 'Select a customer',
-                      required: true,
-                      suffix: Padding(
+    return Consumer2<LoanController, CustomerController>(
+      builder: (context, loanController, customerController, _) {
+        return GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: Scaffold(
+            backgroundColor: AppColors.background,
+            appBar: CustomAppBar(
+              leading: CustomIconButton(
+                icon: CustomIcons.arrow_left_s_line,
+                onTap: () {
+                  AppRouter.pop();
+                },
+              ),
+            ),
+            body: customerController.isGetCustomersLoading
+                ? Center(child: CircularProgressIndicator())
+                : SafeArea(
+                    child: SingleChildScrollView(
+                      child: Padding(
                         padding: const EdgeInsets.all(Spaces.x2),
-                        child: InkWell(
-                          onTap: () {
-                            AppRouter.goToCreateCustomerPage();
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "+ Add new",
-                                style: AppTextStyles.normal.copyWith(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: Spaces.x2),
+                              child: Text(
+                                "Amount and term",
+                                style: AppTextStyles.medium.copyWith(
                                   fontSize: 15,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomInput(
+                                    title: "Loan Amount",
+                                    hint: "R\$ 0,00",
+                                    readOnly: true,
+                                    controller: loanController.amountCtrl,
+                                  ),
+                                ),
+                                SizedBox(width: Spaces.x2),
+                                Expanded(
+                                  child: CustomInput(
+                                    title: "Term (months)",
+                                    hint: "Select a term",
+                                    controller: TextEditingController(
+                                      text: loanController.term?.label ?? '',
+                                    ),
+                                    onTap: () {
+                                      ListBottomSheet.show(
+                                        context: context,
+                                        title: "Select a term",
+                                        items: [
+                                          for (
+                                            int i = 0;
+                                            i < TermType.values.length;
+                                            i++
+                                          )
+                                            BottomSheetItem(
+                                              id: TermType.values[i],
+                                              isCheck:
+                                                  TermType.values[i] ==
+                                                  loanController.term,
+                                              text: TermType.values[i].label,
+                                            ),
+                                        ],
+                                        onSelect: (term) {
+                                          loanController.setTerm(term);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: Spaces.x2,
+                              ),
+                              child: CustomInput(
+                                title: "Select customer",
+                                hint: 'Select a customer',
+                                controller: TextEditingController(
+                                  text: customerController.getCustomerName(
+                                    loanController.customerId ?? '',
+                                  ),
+                                ),
+                                required: true,
+                                readOnly: true,
+                                onTap: () {
+                                  if (customerController.customers.isEmpty) {
+                                    return;
+                                  }
+                                  ListBottomSheet.show(
+                                    context: context,
+                                    title: "Select a customer",
+                                    items: [
+                                      for (
+                                        int i = 0;
+                                        i < customerController.customers.length;
+                                        i++
+                                      )
+                                        BottomSheetItem(
+                                          id: customerController
+                                              .customers[i]
+                                              .id,
+                                          isCheck:
+                                              customerController
+                                                  .customers[i]
+                                                  .id ==
+                                              loanController.customerId,
+                                          text: customerController
+                                              .getCustomerName(
+                                                customerController
+                                                        .customers[i]
+                                                        .id ??
+                                                    '',
+                                              ),
+                                        ),
+                                    ],
+                                    onSelect: (id) {
+                                      loanController.setCustomerId(id);
+                                    },
+                                  );
+                                },
+                                suffix: Padding(
+                                  padding: const EdgeInsets.all(Spaces.x2),
+                                  child: InkWell(
+                                    onTap: () {
+                                      customerController.resetCreateCustomer();
+                                      AppRouter.goToCreateCustomerPage();
+                                    },
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "+ Add new",
+                                          style: AppTextStyles.normal.copyWith(
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            CustomInput(
+                              title: "Interest rate (%)",
+                              hint: '6.39 - Basic Loan',
+                              textInputType: TextInputType.number,
+                              readOnly: true,
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
-                  CustomInput(
-                    title: "Interest rate (%)",
-                    hint: '6.39 - Basic Loan',
-                    textInputType: TextInputType.number,
+            bottomNavigationBar: Padding(
+              padding: const EdgeInsets.only(
+                top: Spaces.x2,
+                left: Spaces.x2,
+                right: Spaces.x2,
+                bottom: Spaces.x4,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  PrimaryButton(
+                    text: "Open Request",
+                    onTap: () async {
+                      final result = await loanController.createLoan();
+
+                      if (result.status) {
+                        AppRouter.goToSuccessPage();
+                        return;
+                      }
+
+                      PopUp.showResult(result: result);
+                    },
                   ),
                 ],
               ),
             ),
           ),
-        ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(
-            top: Spaces.x2,
-            left: Spaces.x2,
-            right: Spaces.x2,
-            bottom: Spaces.x4,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              PrimaryButton(
-                text: "Save new customer",
-                onTap: () {
-                  AppRouter.goToSuccessPage();
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

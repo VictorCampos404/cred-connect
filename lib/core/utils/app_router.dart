@@ -31,7 +31,7 @@ class AppRouter {
   }
 
   static goToHomePage() async {
-    return Modular.to.pushNamed(Routes.homePage);
+    return Modular.to.pushNamedAndRemoveUntil(Routes.homePage, (_) => false);
   }
 
   static goToAmountPage() async {

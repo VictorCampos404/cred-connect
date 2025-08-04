@@ -4,3 +4,4 @@ export 'models/models.dart';
 export 'exceptions/exceptions.dart';
 export 'constants/constants.dart';
 export 'enums/enums.dart';
+export 'extensions/extensions.dart';

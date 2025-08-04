@@ -1,5 +1,5 @@
 import 'package:cred_connect/core/constants/constants.dart';
-import 'package:cred_connect/presentation/controllers/user_controller.dart';
+import 'package:cred_connect/presentation/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
@@ -12,14 +12,16 @@ class AppRoot extends StatefulWidget {
 }
 
 class _AppRootState extends State<AppRoot> {
-  final _providers = [
-    ChangeNotifierProvider(create: (_) => Modular.get<UserController>()),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: _providers,
+      providers: [
+        ChangeNotifierProvider(create: (_) => Modular.get<UserController>()),
+        ChangeNotifierProvider(create: (_) => Modular.get<LoanController>()),
+        ChangeNotifierProvider(
+          create: (_) => Modular.get<CustomerController>(),
+        ),
+      ],
       child: MaterialApp.router(
         title: 'Cred Connect',
         debugShowCheckedModeBanner: false,

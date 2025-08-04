@@ -1,4 +1,5 @@
 import 'package:cred_connect/core/constants/constants.dart';
+import 'package:cred_connect/core/utils/app_router.dart';
 import 'package:cred_connect/presentation/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
@@ -65,7 +66,9 @@ class _SuccessPageState extends State<SuccessPage> {
             PrimaryButton(
               text: "Done",
               background: AppColors.success,
-              onTap: () {},
+              onTap: () {
+                AppRouter.goToHomePage();
+              },
             ),
           ],
         ),

@@ -43,6 +43,8 @@ class AppModule extends Module {
 
     //Controllers
     i.addLazySingleton(UserController.new);
+    i.addLazySingleton(LoanController.new);
+    i.addLazySingleton(CustomerController.new);
 
     //Services
     i.addLazySingleton(LocalDatabaseService.new);

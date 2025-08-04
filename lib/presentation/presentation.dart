@@ -1,2 +1,2 @@
-export 'controllers/user_controller.dart';
+export 'controllers/controllers.dart';
 export 'pages/pages.dart';

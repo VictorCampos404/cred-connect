@@ -16,9 +16,9 @@ class GetBalanceDatasourceImp implements GetBalanceDatasource {
 
     double totalLoans = 0;
 
-    loans.map((element) {
-      totalLoans += element.amount ?? 0;
-    });
+    for (int i = 0; i < loans.length; i++) {
+      totalLoans += loans[i].amount ?? 0;
+    }
 
     return totalAvaliable - totalLoans;
   }

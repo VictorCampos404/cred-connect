@@ -1,14 +1,16 @@
 import 'package:cred_connect/core/core.dart';
 import 'package:cred_connect/data/data.dart';
-import 'package:cred_connect/data/datasources/create_customer/create_customer_datasource.dart';
+import 'package:cred_connect/domain/usecases/get_customers/get_customers_usecase.dart';
 
 class CreateCustomerDatasourceImp implements CreateCustomerDatasource {
   final LocalDatabaseService _localDatabaseService;
   final UserSessionService _userSessionService;
+  final GetCustomersUsecase _getCustomersUsecase;
 
   CreateCustomerDatasourceImp(
     this._localDatabaseService,
     this._userSessionService,
+    this._getCustomersUsecase,
   );
 
   @override
@@ -17,11 +19,7 @@ class CreateCustomerDatasourceImp implements CreateCustomerDatasource {
       throw SystemException(title: "Error!", message: "Access denied.");
     }
 
-    final response = await _localDatabaseService.getAll('customers');
-
-    final allCustomers = response
-        .map((element) => CustomerDto.fromMap(element))
-        .toList();
+    final allCustomers = await _getCustomersUsecase();
 
     final matchCustomers = allCustomers.where((element) {
       return element.nid == customer.nid;

@@ -20,8 +20,8 @@ class CreateAccountDatasourceImp implements CreateAccountDatasource {
 
     if (matchUsers.isNotEmpty) {
       throw SystemException(
-        title: "Celular já em uso!",
-        message: "Esse celular já está em uso por outra conta",
+        title: "Phone already in use!",
+        message: "This phone is already in use by another account",
       );
     }
 
