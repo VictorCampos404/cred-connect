@@ -11,17 +11,17 @@ oferece microempréstimos para clientes de baixa renda.
 
 1. Clone o repositório
 git clone https://github.com/VictorCampos404/cred-connect.git
-cd cred-connect
+-   cd cred-connect
 
 2. Instale as dependências
-flutter pub get
+-   flutter pub get
 
 3. Rode o projeto em um emulador ou dispositivo conectado
-flutter run
+-   flutter run
 
 ### **Como gerar o APK**:
 
-- flutter build apk --release
+-   flutter build apk --release
 
 ### **Links**:
 
