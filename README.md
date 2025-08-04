@@ -29,6 +29,8 @@ git clone https://github.com/VictorCampos404/cred-connect.git
 
 -   Vídeo mostrando o app: https://drive.google.com/file/d/1_uRnZzSvWyGWPcVXOmCnlHvBLmqJoLlC/view?usp=sharing
 
+-   Vídeo mostrando a arquitetura: https://drive.google.com/file/d/1MajaSoaa5609U2IxckfzqEBvKcezsvl3/view?usp=sharing
+
 ### **Arquitetura utilizada: Clean Architecture**:
 
 Com o objetivo de melhorar a escalabilidade e legibilidade, somado ao desacoplamento e modularização das camadas.
